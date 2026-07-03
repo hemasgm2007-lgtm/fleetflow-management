@@ -1,7 +1,8 @@
 from fastapi import FastAPI
-app=FastAPI()
+from app.database import engine
+
+app = FastAPI()
+
 @app.get("/")
 def home():
-    return{
-        "message":"FleetFlow Backend Running Successfully"
-    }
+    return {"message": "FleetFlow Backend Connected Successfully"}
