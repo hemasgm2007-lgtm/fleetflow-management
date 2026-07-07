@@ -1,1 +1,1 @@
-DATABASE_URL = "postgresql://postgres:Hema@1218@localhost:5432/fleetflow_db"
+DATABASE_URL = "postgresql://postgres:Hema%401218@localhost:5432/fleetflow_db"
