@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String
 from app.database import Base
 
 
+
 class Driver(Base):
     __tablename__ = "drivers"
 
@@ -9,4 +10,4 @@ class Driver(Base):
     name = Column(String, nullable=False)
     phone = Column(String, unique=True, nullable=False)
     license_number = Column(String, unique=True, nullable=False)
-    status = Column(String, nullable=False)
+    status = Column(String, nullable=False)                     
