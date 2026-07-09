@@ -1,28 +1,29 @@
 from fastapi import FastAPI
 from app.database import engine, Base
-from app.routers.auth import router as auth_router
 
-# Import new routers
-from app.routers.users import router as users_router
-from app.routers.vehicles import router as vehicles_router
-from app.routers.drivers import router as drivers_router
-from app.routers.shipments import router as shipments_router
-from app.routers.tracking import router as tracking_router
+from app.auth import router as auth_router
+from app.users import router as users_router
+from app.vehicles import router as vehicles_router
+from app.drivers import router as drivers_router
+from app.trips import router as trips_router
+from app.deliveries import router as deliveries_router
+from app.tracking import router as tracking_router
+from app.reports import router as reports_router
+from app.dashboard import router as dashboard_router
 
-# Create all database tables
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(title="FleetFlow Backend")
 
-# Existing Authentication router
 app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
-
-# New routers
-app.include_router(users_router)
-app.include_router(vehicles_router)
-app.include_router(drivers_router)
-app.include_router(shipments_router)
-app.include_router(tracking_router)
+app.include_router(users_router, prefix="/users", tags=["Users"])
+app.include_router(vehicles_router, prefix="/vehicles", tags=["Vehicles"])
+app.include_router(drivers_router, prefix="/drivers", tags=["Drivers"])
+app.include_router(trips_router, prefix="/trips", tags=["Trips"])
+app.include_router(deliveries_router, prefix="/deliveries", tags=["Deliveries"])
+app.include_router(tracking_router, prefix="/tracking", tags=["Tracking"])
+app.include_router(reports_router, prefix="/reports", tags=["Reports"])
+app.include_router(dashboard_router, prefix="/dashboard", tags=["Dashboard"])
 
 @app.get("/")
 def home():
